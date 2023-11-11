@@ -1,7 +1,8 @@
 <div align="center">
-![](./screenshot.png)
+ <img src="./screenshot.png">
+ <h1>yasfetch</h1>
 </div>
-# yasfetch
+
 **yasfetch**, yet anoter fetch, is a simple fetch info only for Fedora and Gnome
 
 ## Requirements
@@ -11,8 +12,8 @@
 ```bash
 git clone "https://github.com/Nico1942/yasfetch.git"
 cd yasfetch
-chmod +x yastech
-./yasfeth
+chmod +x yasfetch
+./yasfetch
 ```
 
 ## Thanks
