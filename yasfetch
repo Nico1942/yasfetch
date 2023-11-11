@@ -1,0 +1,62 @@
+#!/usr/bin/bash
+
+# Variables
+
+user=$(whoami)
+host=$(cat /sys/devices/virtual/dmi/id/product_version)
+host=${host,,}
+os=$(cat /etc/fedora-release | awk -F " " '{print $1 " " $3}')
+kernel=$(uname -r | sed 's/.x86_64//')
+os=${os,,}
+de=$(gnome-shell --version)
+de=${de,,}
+shell=$(basename $SHELL)
+
+if [[ "$shell" -eq "fish" ]]; then
+  shell=$(fish -v | sed "s/, version//")
+fi
+session=$XDG_SESSION_TYPE
+uptime=$(uptime -p | sed 's/up //;  s/ day/d/;s/ hour/h/; s/,//g; s/ minute/m/; s/s//g')
+
+
+## DEFINE COLORS
+
+# probably don't change these
+if [ -x "$(command -v tput)" ]; then
+  bold="$(tput bold 2> /dev/null)"
+  black="$(tput setaf 0 2> /dev/null)"
+  red="$(tput setaf 1 2> /dev/null)"
+  green="$(tput setaf 2 2> /dev/null)"
+  yellow="$(tput setaf 3 2> /dev/null)"
+  blue="$(tput setaf 4 2> /dev/null)"
+  magenta="$(tput setaf 5 2> /dev/null)"
+  cyan="$(tput setaf 6 2> /dev/null)"
+  white="$(tput setaf 7 2> /dev/null)"
+  reset="$(tput sgr0 2> /dev/null)"
+fi
+
+# you can change these
+lc="${reset}${bold}${blue}"         # labels
+nc="${reset}${bold}${magenta}"      # user
+ic="${reset}"                       # info
+c0="${reset}${bold}${white}"               # first color
+c1="${reset}${blue}"                # second color
+c2="${reset}${yellow}"
+c3="${reset}${green}"
+c4="${reset}${red}"
+c5="${reset}${cyan}"
+
+
+cat << EOF
+
+${c1}                 ${nc}us ${ic}• ${user}
+${c1}    FFFFFF       ${lc}ho ${ic}• $host
+${c1}  FFFF${c0}FFF${c1}FFF     ${lc}os ${ic}• $os
+${c1} FFFFF${c0}F${c1}FF${c0}F${c1}FFF    ${lc}kr ${ic}• ${kernel}
+${c1} FFF${c0}F${c1}F${c0}FFF${c1}FFFF    ${lc}de ${ic}• ${de}
+${c1} FF${c0}F${c1}FF${c0}F${c1}FFFFFF    ${lc}sh ${ic}• ${shell}
+${c1} FFF${c0}FFF${c1}FFFFF     ${lc}se ${ic}• ${session}
+${c1} FFFFFFFFF       ${lc}up ${ic}• ${uptime}
+                  ${c2}󰮯 • ${c3}󰊠  ${c4}󰊠  ${c5}󰊠  ${c1}󰊠
+
+EOF
