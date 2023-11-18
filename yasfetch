@@ -2,6 +2,12 @@
 
 # Variables
 
+noLogo=false
+
+if [[ "$1" = "--off" ]]; then
+	noLogo=true
+fi
+
 user=$(whoami)
 host=$(cat /sys/devices/virtual/dmi/id/product_version)
 host=${host,,}
@@ -45,14 +51,27 @@ c3="${reset}${green}"
 c4="${reset}${red}"
 c5="${reset}${cyan}"
 
-logo1="${c1}                 "
-logo2="${c1}    FFFFFF       "
-logo3="${c1}  FFFF${c0}FFF${c1}FFF     "
-logo4="${c1} FFFFF${c0}F${c1}FF${c0}F${c1}FFF    "
-logo5="${c1} FFF${c0}F${c1}F${c0}FFF${c1}FFFF    "
-logo6="${c1} FF${c0}F${c1}FF${c0}F${c1}FFFFFF    "
-logo7="${c1} FFF${c0}FFF${c1}FFFFF     "
-logo8="${c1} FFFFFFFFF       "
+if $noLogo; then
+	logo1="  "
+	logo2="  "
+	logo3="  "
+	logo4="  "
+	logo5="  "
+	logo6="  "
+	logo7="  "
+	logo8="  "
+	logo9="  "
+else
+	logo1="${c1}                 "
+	logo2="${c1}    FFFFFF       "
+	logo3="${c1}  FFFF${c0}FFF${c1}FFF     "
+	logo4="${c1} FFFFF${c0}F${c1}FF${c0}F${c1}FFF    "
+	logo5="${c1} FFF${c0}F${c1}F${c0}FFF${c1}FFFF    "
+	logo6="${c1} FF${c0}F${c1}FF${c0}F${c1}FFFFFF    "
+	logo7="${c1} FFF${c0}FFF${c1}FFFFF     "
+	logo8="${c1} FFFFFFFFF       "
+	logo9="                  "
+fi
 
 cat <<EOF
 
@@ -64,6 +83,6 @@ ${logo5}${lc}de ${ic}• ${de}
 ${logo6}${lc}sh ${ic}• ${shell}
 ${logo7}${lc}se ${ic}• ${session}
 ${logo8}${lc}up ${ic}• ${uptime}
-                  ${c2}󰮯 • ${c3}󰊠  ${c4}󰊠  ${c5}󰊠  ${c1}󰊠
+${logo9}${c2}󰮯 • ${c3}󰊠  ${c4}󰊠  ${c5}󰊠  ${c1}󰊠
 
 EOF
