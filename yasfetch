@@ -13,50 +13,57 @@ de=${de,,}
 shell=$(basename $SHELL)
 
 if [[ "$shell" -eq "fish" ]]; then
-  shell=$(fish -v | sed "s/, version//")
+	shell=$(fish -v | sed "s/, version//")
 fi
 session=$XDG_SESSION_TYPE
 uptime=$(uptime -p | sed 's/up //;  s/ day/d/;s/ hour/h/; s/,//g; s/ minute/m/; s/s//g')
-
 
 ## DEFINE COLORS
 
 # probably don't change these
 if [ -x "$(command -v tput)" ]; then
-  bold="$(tput bold 2> /dev/null)"
-  black="$(tput setaf 0 2> /dev/null)"
-  red="$(tput setaf 1 2> /dev/null)"
-  green="$(tput setaf 2 2> /dev/null)"
-  yellow="$(tput setaf 3 2> /dev/null)"
-  blue="$(tput setaf 4 2> /dev/null)"
-  magenta="$(tput setaf 5 2> /dev/null)"
-  cyan="$(tput setaf 6 2> /dev/null)"
-  white="$(tput setaf 7 2> /dev/null)"
-  reset="$(tput sgr0 2> /dev/null)"
+	bold="$(tput bold 2>/dev/null)"
+	black="$(tput setaf 0 2>/dev/null)"
+	red="$(tput setaf 1 2>/dev/null)"
+	green="$(tput setaf 2 2>/dev/null)"
+	yellow="$(tput setaf 3 2>/dev/null)"
+	blue="$(tput setaf 4 2>/dev/null)"
+	magenta="$(tput setaf 5 2>/dev/null)"
+	cyan="$(tput setaf 6 2>/dev/null)"
+	white="$(tput setaf 7 2>/dev/null)"
+	reset="$(tput sgr0 2>/dev/null)"
 fi
 
 # you can change these
-lc="${reset}${bold}${blue}"         # labels
-nc="${reset}${bold}${magenta}"      # user
-ic="${reset}"                       # info
-c0="${reset}${bold}${white}"               # first color
-c1="${reset}${blue}"                # second color
+lc="${reset}${bold}${blue}"    # labels
+nc="${reset}${bold}${magenta}" # user
+ic="${reset}"                  # info
+c0="${reset}${bold}${white}"   # first color
+c1="${reset}${blue}"           # second color
 c2="${reset}${yellow}"
 c3="${reset}${green}"
 c4="${reset}${red}"
 c5="${reset}${cyan}"
 
+logo1="${c1}                 "
+logo2="${c1}    FFFFFF       "
+logo3="${c1}  FFFF${c0}FFF${c1}FFF     "
+logo4="${c1} FFFFF${c0}F${c1}FF${c0}F${c1}FFF    "
+logo5="${c1} FFF${c0}F${c1}F${c0}FFF${c1}FFFF    "
+logo6="${c1} FF${c0}F${c1}FF${c0}F${c1}FFFFFF    "
+logo7="${c1} FFF${c0}FFF${c1}FFFFF     "
+logo8="${c1} FFFFFFFFF       "
 
-cat << EOF
+cat <<EOF
 
-${c1}                 ${nc}us ${ic}• ${user}
-${c1}    FFFFFF       ${lc}ho ${ic}• $host
-${c1}  FFFF${c0}FFF${c1}FFF     ${lc}os ${ic}• $os
-${c1} FFFFF${c0}F${c1}FF${c0}F${c1}FFF    ${lc}kr ${ic}• ${kernel}
-${c1} FFF${c0}F${c1}F${c0}FFF${c1}FFFF    ${lc}de ${ic}• ${de}
-${c1} FF${c0}F${c1}FF${c0}F${c1}FFFFFF    ${lc}sh ${ic}• ${shell}
-${c1} FFF${c0}FFF${c1}FFFFF     ${lc}se ${ic}• ${session}
-${c1} FFFFFFFFF       ${lc}up ${ic}• ${uptime}
+${logo1}${nc}us ${ic}• ${user}
+${logo2}${lc}ho ${ic}• $host
+${logo3}${lc}os ${ic}• $os
+${logo4}${lc}kr ${ic}• ${kernel}
+${logo5}${lc}de ${ic}• ${de}
+${logo6}${lc}sh ${ic}• ${shell}
+${logo7}${lc}se ${ic}• ${session}
+${logo8}${lc}up ${ic}• ${uptime}
                   ${c2}󰮯 • ${c3}󰊠  ${c4}󰊠  ${c5}󰊠  ${c1}󰊠
 
 EOF
