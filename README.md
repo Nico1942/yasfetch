@@ -3,7 +3,7 @@
  <h1>yasfetch</h1>
 </div>
 
-**yasfetch**, yes another fetch, is a simple fetch info only for **Fedora** and **Gnome**
+**yasfetch**, yes another simple fetch, is a simple fetch info only for **Fedora** and **Gnome**
 
 ## Requirements
 [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
