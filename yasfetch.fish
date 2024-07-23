@@ -9,7 +9,7 @@ if contains -- --off $argv
 end
 
 function toLower
-  echo $argv | tr '[:upper:]' '[:lower:]'
+  echo $argv | string lower
 end
 
 set -l user (whoami)
@@ -50,7 +50,7 @@ set -l nc $reset$bold$magenta # user
 set -l ic $reset
 
 set -l c1 $reset$blue
-set -l c2 $reset$white
+set -l c2 $reset$bold
 set -l c3 $reset$magenta
 set -l c4 $reset$blue
 set -l c5 $reset$red
@@ -92,3 +92,4 @@ set logo[9] $logo[9]$lc"$c6󰮯 • $c5󰊠  $c3󰊠  $c1󰊠  $c7󰊠"
 for i in (seq 9)
 	echo $logo[$i]
 end
+echo
