@@ -45,9 +45,9 @@ set -l cyan (set_color cyan)
 set -l reset (set_color normal)
 
 ## Labels
-set -l lc $reset$bold$blue    # Label
+set -l lc $reset$bold$blue    # label
 set -l nc $reset$bold$magenta # user
-set -l ic $reset
+set -l ic $reset$white        # info
 
 set -l c1 $reset$blue
 set -l c2 $reset$bold
