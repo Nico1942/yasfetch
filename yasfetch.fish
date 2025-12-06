@@ -9,7 +9,7 @@ if contains -- --off $argv
 end
 
 function toLower
-  echo $argv | string lower
+  string lower $argv
 end
 
 set -l user (whoami)
@@ -19,7 +19,8 @@ set -l kernel (uname -r | sed 's/.x86_64//')
 set -l de (gnome-shell --version)
 set -l shell (basename $SHELL)
 set -l session $XDG_SESSION_TYPE
-set -l uptime (uptime)
+set -l uptime (command uptime -p | sed 's/up //;  s/ day/d/;s/ hour/h/; s/,//g; s/ minute/m/; s/s//g')
+# set -l uptime (uptime)
 
 ### Lower mode
 set host (toLower $host)
