@@ -1,8 +1,8 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 ### Variables
 
-set -l noLogo false
+set noLogo false
 
 if contains -- --off $argv
   set noLogo true
@@ -59,15 +59,9 @@ set -l c6 $reset$yellow
 set -l c7 $reset$green
 
 if $noLogo
-  set logo[1] ""
-  set logo[2] ""
-  set logo[3] ""
-  set logo[4] ""
-  set logo[5] ""
-  set logo[6] ""
-  set logo[7] ""
-  set logo[8] ""
-  set logo[9] ""
+	for i in (seq 1 9)
+	  set logo[$i] ""
+  end
 else
   set logo[1] "$c1                 "
   set logo[2] "$c1    FFFFFF       "
